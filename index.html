@@ -2,8 +2,14 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>HBD love</title>     
+    <title>HBD Love 💕</title>     
     <link type="text/css" rel="stylesheet" href="file/default.css">
+    
+    <!-- Google Fonts untuk font yang lebih cantik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <script type="text/javascript" src="file/jquery.min.js"></script>
     <script type="text/javascript" src="file/jscex.min.js"></script>
     <script type="text/javascript" src="file/jscex-parser.js"></script>
@@ -13,6 +19,101 @@
     <script type="text/javascript" src="file/jscex-async-powerpack.min.js"></script>
     <script type="text/javascript" src="file/function.js" charset="utf-8"></script>
     <script type="text/javascript" src="file/love.js" charset="utf-8"></script>
+
+    <style>
+        /* Modern Background & Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffe6e9 0%, #ffc3a0 50%, #ffa1ac 100%);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Background Particles */
+        .bg-particle {
+            position: absolute;
+            bottom: -50px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp 8s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Hearts Animation */
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.5);
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatHeart 10s infinite ease-in-out;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Container for Text */
+        #text {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 25px 30px;
+            box-shadow: 0 8px 32px 0 rgba(235, 110, 142, 0.2);
+            max-width: 420px;
+        }
+
+        #code {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            color: #7a1c38;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Styled Clock Box */
+        #clock-box {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(6px);
+            border-radius: 30px;
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            color: #d6336c;
+            font-weight: 600;
+        }
+
+        /* Glow effect on canvas tree */
+        #canvas {
+            filter: drop-shadow(0 0 15px rgba(255, 182, 193, 0.6));
+        }
+    </style>
+
     <script>
         function playAudio() {
             var audio = document.getElementById("myAudio");
@@ -21,6 +122,9 @@
     </script>
 </head>
 <body>
+    <!-- Animated background particles -->
+    <div id="particles-container"></div>
+
     <div id="main">
         <div id="error"><a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a> (<a href="http://firefox.com.cn/download/">Firefox</a>)</div>
         <audio autoplay="autoplay" height="100" width="100" id="myAudio">
@@ -29,7 +133,6 @@
         </audio>
         <div id="wrap">
             <div id="text">
-                <!-- Added style="display:none;" so text doesn't show before the tree grows -->
                 <div id="code" style="display:none;">
                     <span class="say">Hey you 💞</span><br>
                     <span class="say">Happy Birthday 🎈</span><br>
@@ -48,6 +151,38 @@
     </div>
 
     <script>
+    // Generate floating hearts & light dots in background
+    function createBackgroundEffects() {
+        const container = document.getElementById('particles-container');
+        const heartSymbols = ['💖', '🌸', '✨', '💕', '🎈'];
+        
+        for (let i = 0; i < 25; i++) {
+            const particle = document.createElement('div');
+            
+            if (i % 2 === 0) {
+                // Heart / Sparkle element
+                particle.className = 'heart-particle';
+                particle.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 6 + 6) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+            } else {
+                // Soft light dot
+                particle.className = 'bg-particle';
+                const size = Math.random() * 15 + 5;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+            }
+            
+            container.appendChild(particle);
+        }
+    }
+
+    createBackgroundEffects();
+
     (function() {
         var canvas = $('#canvas');
         
@@ -160,7 +295,7 @@
             tree.snapshot("p2", 500, 0, 610, 680);
 
             canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-            canvas.css("background", "#ffe");
+            canvas.css("background", "transparent");
             $await(Jscex.Async.sleep(300));
             canvas.css("background", "none");
         }));
