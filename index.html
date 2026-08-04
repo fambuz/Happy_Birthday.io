@@ -32,7 +32,7 @@
             align-items: center;
         }
 
-        /* Ambient background particles */
+        /* Floating Light Particles */
         .bg-particle {
             position: absolute;
             bottom: -50px;
@@ -47,7 +47,7 @@
             100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Container Layout Fix */
+        /* Main Container Layout Fix */
         #wrap {
             position: relative !important;
             width: 1100px !important;
@@ -55,19 +55,19 @@
             margin: 0 auto !important;
         }
 
-        /* Text Box Layout & Positioning */
+        /* Fixed Card Alignment & Positioning */
         #text {
             position: absolute !important;
-            left: 50px !important;
-            top: 70px !important;
-            width: 390px !important;
-            background: rgba(255, 255, 255, 0.8) !important;
+            left: 40px !important;
+            top: 50px !important;
+            width: 380px !important;
+            background: rgba(255, 255, 255, 0.75) !important;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 28px 32px;
-            box-shadow: 0 12px 30px rgba(224, 90, 120, 0.15);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(224, 90, 120, 0.15);
             z-index: 10;
         }
 
@@ -75,18 +75,18 @@
             font-family: 'Caveat', cursive !important;
             font-size: 24px !important;
             color: #5c182d !important;
-            line-height: 1.65 !important;
+            line-height: 1.7 !important;
             text-align: left;
         }
 
-        /* Clock Box Fix Inside Card */
+        /* Timer Box Fixed Inside Card */
         #clock-box {
             position: relative !important;
             left: 0 !important;
             bottom: 0 !important;
-            margin-top: 18px !important;
-            padding-top: 12px;
-            border-top: 1px dashed rgba(224, 90, 120, 0.3);
+            margin-top: 20px !important;
+            padding-top: 15px;
+            border-top: 1px solid rgba(224, 90, 120, 0.2);
             font-size: 13px !important;
             color: #b83256 !important;
             font-weight: 600;
@@ -94,7 +94,7 @@
         }
 
         #clock-box a {
-            display: none;
+            display: none; /* Hide default link */
         }
 
         /* Canvas Positioning Fix */
@@ -144,13 +144,13 @@
     </div>
 
     <script>
-    // Background light particles
+    // Background particles generator
     function createParticles() {
         const container = document.getElementById('particles-container');
         for (let i = 0; i < 20; i++) {
             const p = document.createElement('div');
             p.className = 'bg-particle';
-            const size = Math.random() * 10 + 4;
+            const size = Math.random() * 12 + 4;
             p.style.width = size + 'px';
             p.style.height = size + 'px';
             p.style.left = Math.random() * 100 + 'vw';
@@ -176,11 +176,13 @@
 
         var opts = {
             seed: {
-                // DIBAIKI: Koordinat x & y dilaraskan supaya ikon 'hati' bermula tepat bercantum di tepi kanan text box
-                x: 504,
-                y: 360,
+                // Koordinat ini yang menentukan di mana jantung diletakkan:
+                x: 700,  // Menyelaraskan kedudukan KIRI / KANAN (horizontal)
+                y: 360,  // Menyelaraskan kedudukan ATAS / BAWAH (vertical)
                 color: "rgb(190, 26, 37)",
                 scale: 2
+            },
+            // ...
             },
             branch: [
                 [535, 680, 570, 250, 500, 200, 30, 100, [
